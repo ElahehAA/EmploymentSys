@@ -1,0 +1,43 @@
+<h6 mat-dialog-title dir="rtl">ورود | ثبت نام</h6>
+<mat-divider></mat-divider>
+<mat-dialog-content dir="rtl">
+  <div class="row">
+    <mat-form-field>
+      <mat-label class="label">نام کاربری</mat-label>
+      <input matInput [(ngModel)]="user.UserName" value="user.UserName" name="UserName" id="UserName"/>
+    </mat-form-field>
+  </div>
+  <!-- <div class="row">
+    <mat-form-field>
+      <mat-label class="label">نام شرکت | موسسه</mat-label>
+      <input matInput [(ngModel)]="user.CompanyName" value="user.CompanyName" name="CompanyName" id="CompanyName "/>
+    </mat-form-field>
+  </div> -->
+  <div class="row">
+    <mat-form-field>
+      <mat-label class="label">رمز عبور</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="user.Password" value="user.Password" name="Password" id="Password"/>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <button mat-button [mat-dialog-close]="Login()" cdkFocusInitial>ورود</button>
+    <button mat-button (click)="onNoClick()">بستن</button>
+  </div>
+  <div class="row">
+    <a href="">تا به حال ثبت نام نکرده اید ؟</a>
+  </div>
+  <div class="row">
+    <a href="">فراموشی رمز عبور</a>
+  </div>
+</mat-dialog-content>
+<!-- <mat-dialog-actions>
+ 
+</mat-dialog-actions> -->

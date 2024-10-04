@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: rgb(219, 227, 234);
+    direction: rtl;
+}
+html, body { height: 100%; }
+
+@font-face {
+    font-family: 'BNazanin';
+    src: url(assets/fonts/BNazanin.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body { margin: 0; font-family: Roboto, "BNazanin", sans-serif; }
+input , a{
+    font-family: Roboto,"BNazanin", sans-serif;
+}
+.label{
+    font-family: Roboto,"BNazanin", sans-serif;
+}

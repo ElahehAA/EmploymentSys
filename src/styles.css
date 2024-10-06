@@ -12,10 +12,22 @@ html, body { height: 100%; }
     font-style: normal;
 }
 
-body { margin: 0; font-family: Roboto, "BNazanin", sans-serif; }
+body { margin: 0; font-family: Roboto, "BNazanin", sans-serif; font-size: 20px;}
 input , a{
     font-family: Roboto,"BNazanin", sans-serif;
 }
 .label{
     font-family: Roboto,"BNazanin", sans-serif;
+}
+
+button {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: Roboto,"BNazanin", sans-serif;
+}
+a{
+    text-decoration: none;
 }

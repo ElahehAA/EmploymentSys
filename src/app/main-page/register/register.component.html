@@ -1,0 +1,51 @@
+<div dir="rtl" class="position-absolute top-50 start-50 translate-middle" style="width: 40%;">
+
+    <mat-card appearance="outlined">
+        <mat-card-header style="font-size: 25px; font-weight: bold;">
+            ثبت نام
+        </mat-card-header><br>
+        <mat-divider></mat-divider><br>
+        <mat-card-content>
+            <form>
+                <div class="row">
+                     <mat-form-field>
+                         <mat-label class="label">نام کاربری</mat-label>
+                         <input matInput [(ngModel)]="user.UserName" value="user.UserName" name="UserName" id="UserName"/>
+                     </mat-form-field>
+                </div>
+                 <div class="row">
+                     <mat-form-field>
+                     <mat-label class="label">نام شرکت | موسسه</mat-label>
+                     <input matInput [(ngModel)]="user.CompanyName" value="user.CompanyName" name="CompanyName" id="CompanyName "/>
+                     </mat-form-field>
+                 </div>
+                 <div class="row">
+                    <mat-form-field>
+                        <mat-label class="label">آدرس شرکت | موسسه</mat-label>
+                        <input matInput [(ngModel)]="user.Address" value="user.Address" name="Address" id="Address "/>
+                    </mat-form-field>
+                 </div>
+                 <div class="row">
+                    <mat-form-field>
+                        <mat-label>رمز عبور</mat-label>
+                        <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="user.Password" />
+                        <button
+                            mat-icon-button
+                            matSuffix
+                            (click)="clickEvent($event)"
+                            [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide()"
+                        >
+                            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                 </div>
+                 <div class="row">
+                    <button mat-flat-button [mat-dialog-close]="Register()" cdkFocusInitial style="font-size: 40;font-weight: bold;">ثبت نام</button>
+                 </div>
+             </form>
+        </mat-card-content>
+    </mat-card>
+   
+
+</div>

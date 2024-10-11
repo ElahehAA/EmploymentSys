@@ -1,0 +1,20 @@
+<h6 mat-dialog-title dir="rtl">افزودن دسته بندی جدید</h6>
+<mat-divider></mat-divider>
+<mat-dialog-content dir="rtl">
+  <div class="row">
+    <mat-form-field>
+      <mat-label class="label">عنوان دسته بندی</mat-label>
+      <input matInput [(ngModel)]="model.name" value="model.name" name="name" id="name"/>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label class="label">کد دسته بندی</mat-label>
+      <input matInput [(ngModel)]="model.code" value="model.code" name="code" id="code"/>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <button mat-button [mat-dialog-close]="Insert()" cdkFocusInitial>ثبت</button>
+    <button mat-button (click)="onNoClick()">بستن</button>
+  </div>
+</mat-dialog-content>

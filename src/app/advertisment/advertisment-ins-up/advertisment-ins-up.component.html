@@ -1,0 +1,90 @@
+<div dir="rtl" class="position-absolute top-50 start-50 translate-middle" style="width: 60%;">
+
+  <mat-card appearance="outlined">
+      <mat-card-header style="font-size: 25px; font-weight: bold;">
+        افزودن آگهی جدید
+      </mat-card-header><br>
+      <mat-divider></mat-divider><br>
+      <mat-card-content>
+          <form>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label class="label">عنوان شغلی</mat-label>
+                    <input matInput [(ngModel)]="model.jobName" value="model.jobName" name="jobName" id="jobName"/>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>دسته بندی</mat-label>
+                    <mat-select [(ngModel)]="model.AdvertismentCatId">
+                      @for (cat of cats; track cat) {
+                        <mat-option [value]="city.Id">{{cat.name}}</mat-option>
+                      }
+                    </mat-select>
+                </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>شهر</mat-label>
+                    <mat-select [(ngModel)]="model.CityId">
+                      @for (city of cities; track city) {
+                        <mat-option [value]="city.Id">{{city.Name}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="label">جنسیت</label>
+                  <mat-radio-group aria-label="Select an option" [(ngModel)]="model.gender" name="gender" id="gender">
+                      <mat-radio-button value="1">خانم</mat-radio-button>
+                      <mat-radio-button value="2">آقا</mat-radio-button>
+                      <mat-radio-button value="0">آقا / خانم</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label class="label">وضعیت سربازی</mat-label>
+                    <input matInput [(ngModel)]="model.militaryStatus" value="model.militaryStatus" name="militaryStatus" id="militaryStatus"/>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label class="label">میزان حقوق</mat-label>
+                    <input matInput [(ngModel)]="model.Rights" value="model.Rights" name="Rights" id="Rights"/>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label class="label">حداقل سابقه (سال)</mat-label>
+                    <input type="number" matInput [(ngModel)]="model.MinHistory" value="model.MinHistory" name="MinHistory" id="MinHistory"/>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label class="label">مدرک تحصیلی</mat-label>
+                    <input matInput [(ngModel)]="model.MinimumEducationDegree" value="model.MinimumEducationDegree" name="MinimumEducationDegree" id="MinimumEducationDegree"/>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <mat-form-field>
+                  <mat-label>توضیحات</mat-label>
+                  <textarea matInput [(ngModel)]="model.Desc" value="model.Desc" name="Desc" id="Desc"></textarea>
+                </mat-form-field>
+              </div>
+               <div class="row">
+                  <!-- <button mat-flat-button [mat-dialog-close]="Insert()" cdkFocusInitial style="font-size: 40;font-weight: bold;background-color: #713faf;">ثبت نام</button> -->
+                  <a class="btn btn-outline-primary btn-lg" href="Advertisment" role="button" >ثبت</a>
+               
+                </div>
+           </form>
+      </mat-card-content>
+  </mat-card>
+ 
+
+</div>

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: rgb(219, 227, 234);
+    /* background-color: rgb(219, 227, 234); */
     direction: rtl;
 }
 html, body { height: 100%; }
@@ -35,4 +35,9 @@ a{
 li{
     font-weight: bold;
     margin-right:50px;
+}
+
+.table{
+    width: 50%;
+    margin-right: 30px;
 }

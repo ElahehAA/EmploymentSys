@@ -10,6 +10,7 @@ import { MatDialogContent } from '@angular/material/dialog';
 import { User } from '../../Models/User';
 import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -27,20 +28,23 @@ import { MatDivider } from '@angular/material/divider';
     MatDivider
   ],
   templateUrl: './login-dialog.component.html',
-  styleUrl: './login-dialog.component.css'
+  styleUrl: './login-dialog.component.css',
 })
 export class LoginDialogComponent {
 
   user:User=new User();
   constructor(private dialog:MatDialog,
     private dialogref:MatDialogRef<LoginDialogComponent>,
-    @Inject (MAT_DIALOG_DATA) public data:any
+    @Inject (MAT_DIALOG_DATA) public data:any,
+    private _LoginService:LoginService
   ){
 
   }
 
   Login(){
-
+    this._LoginService.Login(this.user).subscribe(res=>{
+      
+    })
   }
 
   onNoClick(){

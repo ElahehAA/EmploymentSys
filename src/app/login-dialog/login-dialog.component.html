@@ -22,7 +22,7 @@
     </mat-form-field>
   </div>
   <div class="row">
-    <button mat-button [mat-dialog-close]="Login()" cdkFocusInitial>ورود</button>
+    <button mat-button (click)="Login()" cdkFocusInitial>ورود</button>
     <button mat-button (click)="onNoClick()">بستن</button>
   </div>
   <div class="row">

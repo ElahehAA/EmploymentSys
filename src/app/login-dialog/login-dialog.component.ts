@@ -11,6 +11,7 @@ import { User } from '../../Models/User';
 import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
 import { LoginService } from './login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -37,7 +38,8 @@ export class LoginDialogComponent {
   constructor(private dialog:MatDialog,
     private dialogref:MatDialogRef<LoginDialogComponent>,
     @Inject (MAT_DIALOG_DATA) public data:any,
-    private _LoginService:LoginService
+    private _LoginService:LoginService,
+    private cookieService: CookieService
   ){
 
   }
@@ -46,7 +48,11 @@ export class LoginDialogComponent {
     var hashPas=await this.hash(this.pass);
     this.user.Password=hashPas;
     this._LoginService.Login(this.user).subscribe(res=>{
-      
+      if(res.token!=""){
+        this.cookieService.set('token', res.token);
+        var xx=this.cookieService.get('token');
+        console.log(xx);
+      }
     })
   }
 

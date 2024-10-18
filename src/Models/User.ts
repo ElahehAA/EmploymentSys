@@ -8,4 +8,6 @@ export class User{
     Email:string="";
     RoleName:string="";
     RoleType:number=0;
+    token:string="";
 }
+

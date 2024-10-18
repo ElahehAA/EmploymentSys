@@ -33,6 +33,7 @@ import { LoginService } from './login.service';
 export class LoginDialogComponent {
 
   user:User=new User();
+  pass:string="";
   constructor(private dialog:MatDialog,
     private dialogref:MatDialogRef<LoginDialogComponent>,
     @Inject (MAT_DIALOG_DATA) public data:any,
@@ -41,7 +42,9 @@ export class LoginDialogComponent {
 
   }
 
-  Login(){
+  async Login(){
+    var hashPas=await this.hash(this.pass);
+    this.user.Password=hashPas;
     this._LoginService.Login(this.user).subscribe(res=>{
       
     })
@@ -55,5 +58,15 @@ export class LoginDialogComponent {
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
+  }
+
+  async hash(item:string) {
+    const utf8 = new TextEncoder().encode(item);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((bytes) => bytes.toString(16).padStart(2, '0'))
+      .join('');
+    return hashHex;
   }
 }

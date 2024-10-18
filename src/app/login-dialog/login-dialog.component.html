@@ -10,7 +10,7 @@
   <div class="row">
     <mat-form-field>
       <mat-label class="label">رمز عبور</mat-label>
-      <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="user.Password" value="user.Password" name="Password" id="Password"/>
+      <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="pass" value="pass" name="Password" id="Password"/>
       <button
         mat-icon-button
         matSuffix
@@ -22,8 +22,8 @@
     </mat-form-field>
   </div>
   <div class="row">
-    <button mat-button (click)="Login()" cdkFocusInitial>ورود</button>
-    <button mat-button (click)="onNoClick()">بستن</button>
+    <button mat-button (click)="Login()" cdkFocusInitial  style="font-size: 40;font-weight: bold;background-color: #713faf; color: white;">ورود</button>
+    <button mat-button (click)="onNoClick()" cdkFocusInitial  >بستن</button>
   </div>
   <div class="row">
     <a href="Register">تا به حال ثبت نام نکرده اید ؟</a>

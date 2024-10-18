@@ -16,7 +16,7 @@
                  <div class="row">
                      <mat-form-field>
                      <mat-label class="label">نام شرکت | موسسه</mat-label>
-                     <input matInput [(ngModel)]="user.CompanyName" value="user.CompanyName" name="CompanyName" id="CompanyName "/>
+                     <input matInput [(ngModel)]="user.Name" value="user.Name" name="Name" id="Name "/>
                      </mat-form-field>
                  </div>
                  <div class="row">
@@ -28,7 +28,7 @@
                  <div class="row">
                     <mat-form-field>
                         <mat-label>رمز عبور</mat-label>
-                        <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="user.Password" />
+                        <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="pass" />
                         <button
                             mat-icon-button
                             matSuffix
@@ -41,7 +41,7 @@
                     </mat-form-field>
                  </div>
                  <div class="row">
-                    <button mat-flat-button [mat-dialog-close]="Register()" cdkFocusInitial style="font-size: 40;font-weight: bold;background-color: #713faf;">ثبت نام</button>
+                    <button mat-flat-button (click)="Register()" cdkFocusInitial style="font-size: 40;font-weight: bold;background-color: #713faf;">ثبت نام</button>
                  </div>
              </form>
         </mat-card-content>

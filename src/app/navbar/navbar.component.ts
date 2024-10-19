@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,4 +11,11 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class NavbarComponent {
 
+  username:string="";
+  constructor( private cookieService: CookieService){
+    this.username=this.cookieService.get('username');
+    console.log(this.username)
+  }
+
+  
 }

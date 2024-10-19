@@ -12,6 +12,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
 import { LoginService } from './login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-dialog',
@@ -39,7 +40,8 @@ export class LoginDialogComponent {
     private dialogref:MatDialogRef<LoginDialogComponent>,
     @Inject (MAT_DIALOG_DATA) public data:any,
     private _LoginService:LoginService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router:Router
   ){
 
   }
@@ -49,15 +51,18 @@ export class LoginDialogComponent {
     this.user.Password=hashPas;
     this._LoginService.Login(this.user).subscribe(res=>{
       if(res.token!=""){
+        this.cookieService.set('username',res.userName);
         this.cookieService.set('token', res.token);
-        var xx=this.cookieService.get('token');
-        console.log(xx);
+        var xx=this.cookieService.get('username');
+        console.log(xx)
+        this.router.navigate(["AdvertismentCat"]);
+        this. onNoClick();
       }
     })
   }
 
   onNoClick(){
-
+    this.dialogref.close();
   }
 
   hide = signal(true);

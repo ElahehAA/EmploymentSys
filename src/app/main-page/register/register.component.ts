@@ -11,6 +11,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { RegisterService } from './register.service';
 import { MatCardContent, MatCardHeader, MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +40,10 @@ export class RegisterComponent {
 
   user:User=new User();
   pass:string="";
-  constructor(private _RegisterService:RegisterService){
+  constructor(private _RegisterService:RegisterService,
+    private cookieService: CookieService
+
+  ){
 
   }
 
@@ -53,7 +57,10 @@ export class RegisterComponent {
     console.log(this.user);
     this.user.Password=await this.hash(this.pass);
   this._RegisterService.Register(this.user).subscribe(res=>{
-    
+    if(res.token!=""){
+      this.cookieService.set('token', res.token);
+      // var xx=this.cookieService.get('token');
+    }
   })
   }
 

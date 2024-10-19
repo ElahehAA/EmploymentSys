@@ -19,7 +19,7 @@
                     <mat-label>دسته بندی</mat-label>
                     <mat-select [(ngModel)]="model.AdvertismentCatId">
                       @for (cat of cats; track cat) {
-                        <mat-option [value]="city.Id">{{cat.name}}</mat-option>
+                        <mat-option [value]="cat.Id">{{cat.Name}}</mat-option>
                       }
                     </mat-select>
                 </mat-form-field>

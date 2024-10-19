@@ -7,6 +7,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { InsertAdvertismentCatComponent } from './insert-advertisment-cat/insert-advertisment-cat.component';
 import { AdvertismentCat } from '../../Models/AdvertismentCat';
+import { AdvertismentCatService } from './advertisment-cat.service';
 @Component({
   selector: 'app-advertisment-cat',
   standalone: true,
@@ -17,13 +18,14 @@ import { AdvertismentCat } from '../../Models/AdvertismentCat';
      MatButtonToggleModule,
   ],
   templateUrl: './advertisment-cat.component.html',
-  styleUrl: './advertisment-cat.component.css'
+  styleUrl: './advertisment-cat.component.css',
+  providers:[AdvertismentCatService]
 })
 export class AdvertismentCatComponent implements AfterViewInit {
 
-
+  ELEMENT_DATA: AdvertismentCat[]=[];
   displayedColumns: string[] = ['name', 'code', 'option'];
-  dataSource = new MatTableDataSource<AdvertismentCat>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<AdvertismentCat>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -32,27 +34,49 @@ export class AdvertismentCatComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(public dialog:MatDialog){
-
+  constructor(public dialog:MatDialog,
+    private _AdvertismentCatService:AdvertismentCatService
+  ){
+    this.BindGridData(); 
+    
   }
 
   InsertModal(){
-      const dialogRef = this.dialog.open(InsertAdvertismentCatComponent, {
-        width:"50%",
-        data: new AdvertismentCat(),
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (result !== undefined) {
-        }
-      });
-    }
+    const dialogRef = this.dialog.open(InsertAdvertismentCatComponent, {
+      width:"50%",
+      data: new AdvertismentCat(),
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.BindGridData();
+    });
+  }
+
+  BindGridData(){
+    this.ELEMENT_DATA=[];
+    this._AdvertismentCatService.BindGridData().subscribe(res=>{
+      this.ELEMENT_DATA=res;
+    })
+  }
+
+  Delete(id:number){
+    this._AdvertismentCatService.Delete(id).subscribe(res=>{
+      this.BindGridData();
+    },e=>{
+      
+    })
+  }
+
+  Edit(item:AdvertismentCat){
+    const dialogRef = this.dialog.open(InsertAdvertismentCatComponent, {
+      width:"50%",
+      data: item,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.BindGridData();
+    });
+  }
 }
 
-//testData
-const ELEMENT_DATA: AdvertismentCat[] = [
-  {Id:1,name: 'برنامه نویسی', code: 1},
-  {Id:2,name: 'فناوری اطلاعات', code: 2},
-  {Id:3,name: 'بازاریابی', code: 3},
-];
 

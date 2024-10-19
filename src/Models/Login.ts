@@ -1,6 +1,6 @@
 export class Login{
-    UserName:string="";
-    Password:string="";
+    userName:string="";
+    password:string="";
     token:string="";
-    RoleType:number=0;
+    roleType:number=0;
 }

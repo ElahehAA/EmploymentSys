@@ -1,4 +1,9 @@
-<h6 mat-dialog-title dir="rtl">افزودن دسته بندی جدید</h6>
+@if(isEdit==false){
+  <h6 mat-dialog-title dir="rtl">افزودن دسته بندی جدید</h6>
+}
+@if(isEdit==true){
+  <h6 mat-dialog-title dir="rtl">ویرایش دسته بندی</h6>
+}
 <mat-divider></mat-divider>
 <mat-dialog-content dir="rtl">
   <div class="row">
@@ -14,7 +19,7 @@
     </mat-form-field>
   </div>
   <div class="row">
-    <button mat-button [mat-dialog-close]="Insert()" cdkFocusInitial>ثبت</button>
+    <button mat-button (click)="Insert()" cdkFocusInitial>ثبت</button>
     <button mat-button (click)="onNoClick()">بستن</button>
   </div>
 </mat-dialog-content>

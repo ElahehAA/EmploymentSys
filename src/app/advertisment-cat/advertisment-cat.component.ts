@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Provider, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
@@ -8,6 +8,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { InsertAdvertismentCatComponent } from './insert-advertisment-cat/insert-advertisment-cat.component';
 import { AdvertismentCat } from '../../Models/AdvertismentCat';
 import { AdvertismentCatService } from './advertisment-cat.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Login } from '../../Models/Login';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../../Utility/Interceptor';
+
+export const AuthInterceptorProvider: Provider =
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true };
+ 
 @Component({
   selector: 'app-advertisment-cat',
   standalone: true,
@@ -15,12 +23,14 @@ import { AdvertismentCatService } from './advertisment-cat.service';
     MatButtonModule,
     MatTableModule,
      MatPaginatorModule,
-     MatButtonToggleModule,
+     MatButtonToggleModule
   ],
   templateUrl: './advertisment-cat.component.html',
   styleUrl: './advertisment-cat.component.css',
-  providers:[AdvertismentCatService]
+  providers:[AuthInterceptorProvider,AdvertismentCatService]
 })
+
+
 export class AdvertismentCatComponent implements AfterViewInit {
 
   ELEMENT_DATA: AdvertismentCat[]=[];
@@ -35,7 +45,8 @@ export class AdvertismentCatComponent implements AfterViewInit {
   }
 
   constructor(public dialog:MatDialog,
-    private _AdvertismentCatService:AdvertismentCatService
+    private _AdvertismentCatService:AdvertismentCatService,
+    private cookieService:CookieService
   ){
     this.BindGridData(); 
     
@@ -59,7 +70,11 @@ export class AdvertismentCatComponent implements AfterViewInit {
     })
   }
 
+  user:Login=new Login();
   Delete(id:number){
+    var jsonUser=this.cookieService.get('user');
+    this.user=JSON.parse(jsonUser);
+
     this._AdvertismentCatService.Delete(id).subscribe(res=>{
       this.BindGridData();
     },e=>{

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { CookieService } from 'ngx-cookie-service';
+import { Login } from '../../Models/Login';
 
 @Component({
   selector: 'app-navbar',
@@ -11,11 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NavbarComponent {
 
-  username:string="";
+  userjson:string="";
+  user:Login=new Login();
   constructor( private cookieService: CookieService){
-    this.username=this.cookieService.get('username');
-    console.log(this.username)
+    this.userjson=this.cookieService.get('user');
+    this.user=JSON.parse(this.userjson);
+    
   }
 
-  
 }

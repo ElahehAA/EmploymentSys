@@ -1,5 +1,5 @@
 export class Statics{
 
     //URL
-    public static API=" https://localhost:7022/";
+    public static API="http://localhost:5195/";
 }

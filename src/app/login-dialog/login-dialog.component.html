@@ -1,6 +1,16 @@
 <h6 mat-dialog-title dir="rtl">ورود | ثبت نام</h6>
 <mat-divider></mat-divider>
 <mat-dialog-content dir="rtl">
+
+  @if(errorMessage!=""){
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+      <div>
+        {{errorMessage}}
+      </div>
+    </div>
+  }
+
+
   <div class="row">
     <mat-form-field>
       <mat-label class="label">نام کاربری</mat-label>
@@ -22,6 +32,10 @@
     </mat-form-field>
   </div>
   <div class="row">
+    @if(progressing==true){
+      <mat-progress-bar mode="buffer"></mat-progress-bar>
+      <br>
+    }
     <button mat-button (click)="Login()" cdkFocusInitial  style="font-size: 40;font-weight: bold;background-color: #713faf; color: white;">ورود</button>
     <button mat-button (click)="onNoClick()" cdkFocusInitial  >بستن</button>
   </div>

@@ -22,6 +22,6 @@ export const routes: Routes = [
     {path:"Register",component:RegisterComponent},
     {path:"AdvertismentCat",component:AdvertismentCatComponent},
     {path:"Advertisment",component:AdvertismentComponent},
-    {path:"AdvertismentInsUp",component:AdvertismentInsUpComponent},
+    {path:"Advertisment/AdvertismentInsUp/:id",component:AdvertismentInsUpComponent},
     {path:"**",component:MainPageComponent}
 ];

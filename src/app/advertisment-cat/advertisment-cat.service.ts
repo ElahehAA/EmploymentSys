@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdvertismentCat } from '../../Models/AdvertismentCat';
 import { Statics } from '../../Statics';
@@ -9,7 +9,7 @@ import { Statics } from '../../Statics';
 export class AdvertismentCatService {
 
   constructor(private http:HttpClient) { }
-
+ 
   Insert(item:AdvertismentCat){
     return this.http.post(Statics.API+"EmploymentSys/AdvertismentCat",item,{responseType:"json"});
   }
@@ -22,6 +22,16 @@ export class AdvertismentCatService {
     return this.http.get<AdvertismentCat[]>(Statics.API+"EmploymentSys/AdvertismentCat",{responseType:"json"});
   }
 
+  // Delete(id:number,token:string){
+  //   const headerDict = {
+  //     'Authorization': 'Bearer ' + token,
+  //   }
+  //   const requestOptions = {                                                                                                                                                                                 
+  //     headers: new HttpHeaders(headerDict), 
+  //   };
+  //   return this.http.delete(Statics.API+"EmploymentSys/AdvertismentCat/"+id,requestOptions);
+  // }
+  
   Delete(id:number){
     return this.http.delete(Statics.API+"EmploymentSys/AdvertismentCat/"+id,{responseType:"json"});
   }

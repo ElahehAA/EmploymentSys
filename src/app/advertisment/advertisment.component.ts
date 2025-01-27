@@ -2,11 +2,16 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { AdvertismentGrid, AdvertismentInsUp } from '../../Models/Advertisment';
+import { Advertisment } from '../../Models/Advertisment';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AdvertismentInsUpComponent } from './advertisment-ins-up/advertisment-ins-up.component';
+import { AdvertismentService } from './advertisment.service';
+import { Router, RouterLink } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { User } from '../../Models/User';
+import { Login } from '../../Models/Login';
 
 @Component({
   selector: 'app-advertisment',
@@ -15,14 +20,16 @@ import { AdvertismentInsUpComponent } from './advertisment-ins-up/advertisment-i
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatButtonToggleModule],
+    MatButtonToggleModule,
+    RouterLink],
   templateUrl: './advertisment.component.html',
-  styleUrl: './advertisment.component.css'
+  styleUrl: './advertisment.component.css',
+  providers:[AdvertismentService]
 })
 export class AdvertismentComponent {
-  
+  ELEMENT_DATA: Advertisment[]=[];
   displayedColumns: string[] = ['jobName', 'AdvertismentCatname', 'City','Rights','gender','option'];
-  dataSource = new MatTableDataSource<AdvertismentGrid>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Advertisment>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -30,29 +37,30 @@ export class AdvertismentComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
-  constructor(public dialog:MatDialog){
-
+  userjson:string="";
+  user:Login=new Login();
+  constructor(public dialog:MatDialog,
+    private _AdvertismentService:AdvertismentService,
+    public router:Router,
+    private cookieService:CookieService
+  ){
+    this.BindGridData();
   }
 
-  InsertModal(){
-      const dialogRef = this.dialog.open(AdvertismentInsUpComponent, {
-        width:"50%",
-        data: new AdvertismentInsUp(),
-      });
+  BindGridData(){
+    this._AdvertismentService.BindGriddata().subscribe(res=>{
+      this.ELEMENT_DATA=res;
+    })
+  }
+
+  Edit(id:number){
+    this.router.navigate(["AdvertismentInsUp/"+id])
+  }
   
-      dialogRef.afterClosed().subscribe(result => {
-        if (result !== undefined) {
-        }
-      });
-    }
+  Delete(id:number){
+    this._AdvertismentService.Delete(id).subscribe(res=>{
+      this.BindGridData();
+    })
+  }
 }
 
-
-
-//////// test
-
-const ELEMENT_DATA: AdvertismentGrid[] = [
-  {Id:1,jobName:'.netcore',AdvertismentCatname:'برنامه نویسی',City:'تبریز',gender:0},
-  {Id:1,jobName:'Html/Css',AdvertismentCatname:'برنامه نویسی',City:'تبریز',gender:1},
-];

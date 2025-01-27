@@ -12,6 +12,7 @@ import { RegisterService } from './register.service';
 import { MatCardContent, MatCardHeader, MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -41,8 +42,8 @@ export class RegisterComponent {
   user:User=new User();
   pass:string="";
   constructor(private _RegisterService:RegisterService,
-    private cookieService: CookieService
-
+    private cookieService: CookieService,
+    private router:Router
   ){
 
   }
@@ -59,7 +60,7 @@ export class RegisterComponent {
   this._RegisterService.Register(this.user).subscribe(res=>{
     if(res.token!=""){
       this.cookieService.set('token', res.token);
-      // var xx=this.cookieService.get('token');
+      this.router.navigate(["AdvertismentCat"]);
     }
   })
   }

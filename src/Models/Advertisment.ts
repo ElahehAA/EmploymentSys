@@ -1,20 +1,21 @@
-export class AdvertismentInsUp{
-    Id:number=0;
+export class Advertisment{
+    id:number=0;
     jobName:string="";
-    AdvertismentCatId:number=0;
-    AdvertismentCatname:string="";
-    CityId:number=0;
-    City:string="";
+    advertismentCatId:number=0;
+    advertismentCatname:string="";
+    cityId:number=0;
+    cityName:string="";
 
     //خانم 1
     //آقا  2
     //هر دو 0
     gender:number=0
-    Rights:string="توافقی";
+    rights:string="توافقی";
     militaryStatus:string="";
-    MinHistory:number=0;
-    MinimumEducationDegree:string="";
-    Desc:string="";
+    minHistory:number=0;
+    minimumEducationDegree:string="";
+    desc:string="";
+    userId:number=0;
 }
 
 export class AdvertismentGrid{

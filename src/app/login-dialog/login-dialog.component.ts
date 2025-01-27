@@ -13,6 +13,8 @@ import { MatDivider } from '@angular/material/divider';
 import { LoginService } from './login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-dialog',
@@ -27,15 +29,19 @@ import { Router } from '@angular/router';
     MatDialogContent,
     MatIcon,
     MatDialogTitle,
-    MatDivider
+    MatDivider,
+    MatProgressBarModule
   ],
   templateUrl: './login-dialog.component.html',
   styleUrl: './login-dialog.component.css',
+  providers:[LoginService
+  ]
 })
 export class LoginDialogComponent {
 
   user:User=new User();
   pass:string="";
+  progressing:boolean=false;
   constructor(private dialog:MatDialog,
     private dialogref:MatDialogRef<LoginDialogComponent>,
     @Inject (MAT_DIALOG_DATA) public data:any,
@@ -46,18 +52,23 @@ export class LoginDialogComponent {
 
   }
 
+  errorMessage:string="";
   async Login(){
+    this.progressing=true;
     var hashPas=await this.hash(this.pass);
     this.user.Password=hashPas;
     this._LoginService.Login(this.user).subscribe(res=>{
+      this.progressing=false;
       if(res.token!=""){
-        this.cookieService.set('username',res.userName);
-        this.cookieService.set('token', res.token);
-        var xx=this.cookieService.get('username');
-        console.log(xx)
+        this.cookieService.set('user',JSON.stringify(res));
+        localStorage.setItem('token',res.token)
         this.router.navigate(["AdvertismentCat"]);
         this. onNoClick();
       }
+    },e=>{
+    this.progressing=false;
+      console.log(e.error);
+      this.errorMessage=e.error;
     })
   }
 

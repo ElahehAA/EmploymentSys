@@ -25,6 +25,7 @@ import { MatDivider } from '@angular/material/divider';
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent {
+  public logoSrc:string="/assets/Img/download.jpg"
   constructor(private dialog:MatDialog){
 
   }

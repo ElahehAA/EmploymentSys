@@ -10,8 +10,10 @@ import {
 } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-main-page',
@@ -20,7 +22,12 @@ import { MatDivider } from '@angular/material/divider';
     MatCardContent,
     MatButton,
     MatCardHeader,
-    MatDivider],
+    MatDivider,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggle,
+    MatButtonToggleGroup,
+  MatDivider],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })

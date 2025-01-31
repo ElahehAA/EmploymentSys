@@ -1,33 +1,39 @@
-<!-- <div dir="rtl" class="position-absolute top-50 start-50 translate-middle" style="width: 70%;">
 
-    <div class="card text-bg-primary">
-        <div class="card-header">به سامانه استخدامی خوش آمدید</div>
-        <div class="card-body">
-          <h5 class="card-title">جهت ثبت آگهی جدید وارد شوید</h5>
-          <button mat-stroked-button (click)="OpenLoginPage()">ورود | ثبت نام</button>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img [src]="logoSrc" alt="" width="120" height="70" class="d-inline-block align-text-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">بهترین شرکت ها</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">جستجوی آگهی</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
+      </ul>
     </div>
-</div> -->
+    <div class="d-flex" dir="rtl">
+      <button mat-button class="loginbut">بخش کارفرمایان</button>
+      &nbsp;
+      <mat-divider [vertical]="true"></mat-divider>
+      &nbsp;
+      <button mat-raised-button class="loginbut">
+        ورود | ثبت نام
+        <mat-icon matSuffix style="color: blueviolet;">login</mat-icon>
+      </button>
+    </div>
+  </div>
+</nav>
 
-
-<!-- <div dir="rtl" class="position-absolute top-50 start-50 translate-middle" style="width: 70%;">
-  <mat-card appearance="outlined">
-    <mat-card-header>به سامانه استخدامی خوش آمدید</mat-card-header><br>
-    <mat-divider></mat-divider>
-    <div class="row">
-      <mat-card-content>جهت ثبت آگهی جدید وارد شوید</mat-card-content>
-    </div>
-    <div class="example-button-row">
-      <button  mat-button (click)="OpenLoginPage()">ورود | ثبت نام</button>
-    </div>
-  </mat-card>
-</div> -->
-
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand">
-        <!-- <img [src]="logo" alt="" width="100" height="100" class="d-inline-block align-text-top"> -->
-        <img [src]="logoSrc" alt="" class="d-inline-block align-text-top">
-      </a>
-    </div>
-  </nav>
+<hr>

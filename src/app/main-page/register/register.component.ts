@@ -9,10 +9,10 @@ import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/mater
 import { MatIcon } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import { RegisterService } from './register.service';
-import { MatCardContent, MatCardHeader, MatCardModule } from '@angular/material/card';
+import { MatCardAvatar, MatCardContent, MatCardHeader, MatCardModule, MatCardTitle } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -31,23 +31,44 @@ import { Router } from '@angular/router';
     MatSelectModule,
     MatCardModule,
     MatCardHeader,
-    MatCardContent
+    MatCardContent,
+    MatCardTitle,
+    RouterLink
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
-  providers:[RegisterService]
+  providers:[RegisterService
+  ]
 })
 export class RegisterComponent {
 
   user:User=new User();
   pass:string="";
+  public logoSrc:string="/assets/Img/download.jpg"
+  type:number=1;
+  headerName:string="";
+
   constructor(private _RegisterService:RegisterService,
     private cookieService: CookieService,
-    private router:Router
+    private router:Router,
+    private route : ActivatedRoute
   ){
+    this.route.params.subscribe(params => {
+      console.log(params['type']);
+      this.type = params['type'];
+    });
 
+    if(this.type==1){
+      this.headerName="کارجو";
+    }
+    if(this.type==2){
+      this.headerName="کارفرما";
+    }
   }
-
+  // ngOnInit() {
+  //   this.type = this.route.snapshot.params['type'];
+  //   console.log(this.type)
+  // }
   hide = signal(true);
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());

@@ -1,51 +1,55 @@
-<h6 mat-dialog-title dir="rtl">ورود | ثبت نام</h6>
-<mat-divider></mat-divider>
-<mat-dialog-content dir="rtl">
+<mat-card appearance="outlined" dir="rtl">
 
-  @if(errorMessage!=""){
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <div>
-        {{errorMessage}}
+  <mat-card-header>
+    <div mat-card-avatar class="logo-header"></div>
+    <mat-card-title>ورود | ثبت نام {{headerName}}</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider><br>
+  <mat-card-content>
+
+    @if(errorMessage!=""){
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <div>
+          {{errorMessage}}
+        </div>
       </div>
-    </div>
-  }
-
-
-  <div class="row">
-    <mat-form-field>
-      <mat-label class="label">نام کاربری</mat-label>
-      <input matInput [(ngModel)]="user.UserName" value="user.UserName" name="UserName" id="UserName"/>
-    </mat-form-field>
-  </div>
-  <div class="row">
-    <mat-form-field>
-      <mat-label class="label">رمز عبور</mat-label>
-      <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="pass" value="pass" name="Password" id="Password"/>
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="clickEvent($event)"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide()">
-        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-  </div>
-  <div class="row">
-    @if(progressing==true){
-      <mat-progress-bar mode="buffer"></mat-progress-bar>
-      <br>
     }
-    <button mat-button (click)="Login()" cdkFocusInitial  style="font-size: 40;font-weight: bold;background-color: #713faf; color: white;">ورود</button>
-    <button mat-button (click)="onNoClick()" cdkFocusInitial  >بستن</button>
-  </div>
-  <div class="row">
-    <a href="Register">تا به حال ثبت نام نکرده اید ؟</a>
-  </div>
-  <div class="row">
-    <a href="">فراموشی رمز عبور</a>
-  </div>
-</mat-dialog-content>
-<!-- <mat-dialog-actions>
- 
-</mat-dialog-actions> -->
+  
+  
+    <div class="row">
+      <mat-form-field>
+        <mat-label class="label">نام کاربری</mat-label>
+        <input matInput [(ngModel)]="user.UserName" value="user.UserName" name="UserName" id="UserName"/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label class="label">رمز عبور</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="pass" value="pass" name="Password" id="Password"/>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()">
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      @if(progressing==true){
+        <mat-progress-bar mode="buffer"></mat-progress-bar>
+        <br>
+      }
+      <button mat-button (click)="Login()" cdkFocusInitial  style="font-size: 40;font-weight: bold;background-color: #713faf; color: white;">ورود</button>
+      <button mat-button (click)="onNoClick()" cdkFocusInitial  >بستن</button>
+    </div>
+    <div class="row">
+      <a href="Register/{{type}}">تا به حال ثبت نام نکرده اید ؟</a>
+    </div>
+    <div class="row">
+      <a href="">فراموشی رمز عبور</a>
+    </div>
+    
+  </mat-card-content>
+</mat-card>

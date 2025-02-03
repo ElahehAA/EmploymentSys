@@ -41,3 +41,10 @@ li{
     width: 50%;
     margin-right: 30px;
 }
+
+.logo-header {
+    background-image: url('/assets/Img/minilogo.jpg');
+    background-size:cover;
+  }
+
+

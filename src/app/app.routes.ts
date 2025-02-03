@@ -10,8 +10,9 @@ export const routes: Routes = [
         path:"Home",component:MainPageComponent,
         pathMatch : 'prefix',
         children:[
-            // {path:"Register",component:RegisterComponent},
-    
+            {path:"AdvertismentCat",component:AdvertismentCatComponent},
+            {path:"Advertisment",component:AdvertismentComponent},
+            {path:"Advertisment/AdvertismentInsUp/:id",component:AdvertismentInsUpComponent},
     
     
     
@@ -19,9 +20,6 @@ export const routes: Routes = [
         ]
         
     },
-    {path:"Register",component:RegisterComponent},
-    {path:"AdvertismentCat",component:AdvertismentCatComponent},
-    {path:"Advertisment",component:AdvertismentComponent},
-    {path:"Advertisment/AdvertismentInsUp/:id",component:AdvertismentInsUpComponent},
+    {path:"Register/:type",component:RegisterComponent},
     {path:"**",component:MainPageComponent}
 ];

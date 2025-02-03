@@ -14,6 +14,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -27,7 +28,8 @@ import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-
     MatButtonModule,
     MatButtonToggle,
     MatButtonToggleGroup,
-  MatDivider],
+  MatDivider,
+RouterOutlet],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
@@ -38,10 +40,10 @@ export class MainPageComponent {
   }
 
 
-  OpenLoginPage(){
+  OpenLoginPageKaryab(){
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       width:"50%",
-      data: {},
+      data: {type:1},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -49,4 +51,17 @@ export class MainPageComponent {
       }
     });
   }
+
+  OpenLoginPageKarfarma(){
+    const dialogRef = this.dialog.open(LoginDialogComponent, {
+      width:"50%",
+      data: {type:2},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+      }
+    });
+  }
+
 }

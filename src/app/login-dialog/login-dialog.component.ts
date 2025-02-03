@@ -12,9 +12,10 @@ import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
 import { LoginService } from './login.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatCardContent, MatCardHeader, MatCardModule, MatCardTitle } from '@angular/material/card';
 
 @Component({
   selector: 'app-login-dialog',
@@ -30,7 +31,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     MatIcon,
     MatDialogTitle,
     MatDivider,
-    MatProgressBarModule
+    MatCardModule,
+    MatCardHeader,
+    MatCardContent,
+    MatCardTitle,
+    MatProgressBarModule,
+    RouterLink
   ],
   templateUrl: './login-dialog.component.html',
   styleUrl: './login-dialog.component.css',
@@ -42,6 +48,8 @@ export class LoginDialogComponent {
   user:User=new User();
   pass:string="";
   progressing:boolean=false;
+  type:number=1;
+  headerName:string="";
   constructor(private dialog:MatDialog,
     private dialogref:MatDialogRef<LoginDialogComponent>,
     @Inject (MAT_DIALOG_DATA) public data:any,
@@ -49,7 +57,13 @@ export class LoginDialogComponent {
     private cookieService: CookieService,
     private router:Router
   ){
-
+    this.type=data.type;
+    if(this.type==1){
+      this.headerName="کارجو";
+    }
+    if(this.type==2){
+      this.headerName="کارفرما";
+    }
   }
 
   errorMessage:string="";

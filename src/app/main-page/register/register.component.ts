@@ -60,9 +60,11 @@ export class RegisterComponent {
 
     if(this.type==1){
       this.headerName="کارجو";
+      this.user.RoleType=3;
     }
     if(this.type==2){
       this.headerName="کارفرما";
+      this.user.RoleType=2;
     }
   }
   // ngOnInit() {
@@ -75,6 +77,7 @@ export class RegisterComponent {
     event.stopPropagation();
   }
 
+  errorMessage:string="";
   async Register(){
     console.log(this.user);
     this.user.Password=await this.hash(this.pass);
@@ -83,6 +86,8 @@ export class RegisterComponent {
       this.cookieService.set('token', res.token);
       this.router.navigate(["AdvertismentCat"]);
     }
+  },e=>{
+    this.errorMessage=e.error;
   })
   }
 

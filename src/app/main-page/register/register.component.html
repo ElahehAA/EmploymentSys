@@ -8,6 +8,13 @@
             <mat-card-title>ثبت نام {{headerName}}</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider><br>
+        @if(errorMessage!=""){
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+              <div>
+                {{errorMessage}}
+              </div>
+            </div>
+          }
         <mat-card-content>
             <form>
                 <div class="row">
@@ -16,18 +23,32 @@
                          <input matInput [(ngModel)]="user.UserName" value="user.UserName" name="UserName" id="UserName"/>
                      </mat-form-field>
                 </div>
-                 <div class="row">
+                <div class="row">
                      <mat-form-field>
-                     <mat-label class="label">نام شرکت | موسسه</mat-label>
-                     <input matInput [(ngModel)]="user.Name" value="user.Name" name="Name" id="Name "/>
+                         <mat-label class="label">ایمیل</mat-label>
+                         <input matInput [(ngModel)]="user.Email" value="user.Email" name="Email" id="Email"/>
                      </mat-form-field>
-                 </div>
-                 <div class="row">
-                    <mat-form-field>
-                        <mat-label class="label">آدرس شرکت | موسسه</mat-label>
-                        <input matInput [(ngModel)]="user.Address" value="user.Address" name="Address" id="Address "/>
-                    </mat-form-field>
-                 </div>
+                </div>
+                <div class="row">
+                     <mat-form-field>
+                         <mat-label class="label">تلفن</mat-label>
+                         <input matInput [(ngModel)]="user.PhoneNum" value="user.PhoneNum" name="PhoneNum" id="PhoneNum" maxlength="10"/>
+                     </mat-form-field>
+                </div>
+                @if(type==2){
+                    <div class="row">
+                        <mat-form-field>
+                        <mat-label class="label">نام شرکت | موسسه</mat-label>
+                        <input matInput [(ngModel)]="user.Name" value="user.Name" name="Name" id="Name "/>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                       <mat-form-field>
+                           <mat-label class="label">آدرس شرکت | موسسه</mat-label>
+                           <input matInput [(ngModel)]="user.Address" value="user.Address" name="Address" id="Address "/>
+                       </mat-form-field>
+                    </div>
+                }
                  <div class="row">
                     <mat-form-field>
                         <mat-label>رمز عبور</mat-label>

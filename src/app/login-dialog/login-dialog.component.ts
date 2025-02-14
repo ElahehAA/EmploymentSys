@@ -60,9 +60,11 @@ export class LoginDialogComponent {
     this.type=data.type;
     if(this.type==1){
       this.headerName="کارجو";
+      this.user.RoleType=3;
     }
     if(this.type==2){
       this.headerName="کارفرما";
+      this.user.RoleType=2;
     }
   }
 
